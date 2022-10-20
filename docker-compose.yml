@@ -1,0 +1,21 @@
+version: '3.9'
+
+volumes:
+  abyss-db-volume:
+    name: abyss-postgres-data
+
+services:
+  abyss-db-service:
+    image: postgres
+    container_name: abyss-db
+    ports:
+      - 5433:5433
+    expose:
+      - 5433
+    command: -p 5433
+    volumes:
+      - abyss-db-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: Secr3tPassw0rd123
+      POSTGRES_DB: postgres
+      ALLOW_IP_RANGE: 0.0.0.0/0
